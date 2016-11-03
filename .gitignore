@@ -110,3 +110,4 @@ fabric.properties
 build/
 data/
 *.jpg
+.idea/*
