@@ -6,8 +6,7 @@
 using namespace std;
 using namespace cv;
 
-vector<UMat> loadImages(String path)
-{
+vector<UMat> loadImages(String path) {
     vector<UMat> images;
 
     vector<String> files;
@@ -21,7 +20,6 @@ vector<UMat> loadImages(String path)
 }
 
 int main(int argc, char *argv[]) {
-
     String path = argv[1];
 
     vector<UMat> imgs = loadImages(path);
@@ -29,8 +27,8 @@ int main(int argc, char *argv[]) {
     Mat matching_mask = Mat::zeros(imgs.size(), imgs.size(), CV_8U);
 
     for (int i = 0; i < imgs.size() - 1; ++i) {
-        matching_mask.at<char>(i, i+1) = 1;
-        matching_mask.at<char>(i+1, i) = 1;
+        matching_mask.at<char>(i, i + 1) = 1;
+        matching_mask.at<char>(i + 1, i) = 1;
     }
 
     UMat matching_mask_;
@@ -40,8 +38,11 @@ int main(int argc, char *argv[]) {
 
     Ptr<Stitcher> st = Stitcher::create(Stitcher::Mode::SCANS, false);
     st->setFeaturesFinder(makePtr<detail::SiftFeaturesFinder>());
-    st->setFeaturesMatcher(makePtr<detail::AffineBestOf2NearestMatcher>(true, false));
+    //st->setFeaturesMatcher(makePtr<detail::AffineBestOf2NearestMatcher>(true, false));
+    //st->setFeaturesMatcher(makePtr<detail::AffineMatcher>());
     st->setMatchingMask(matching_mask_);
+    //st->setBundleAdjuster(makePtr<detail::BundleAdjusterAffine>());
+    //st->setExposureCompensator(makePtr<detail::BlocksGainCompensator>());
 
 
     st->stitch(imgs, pano);
