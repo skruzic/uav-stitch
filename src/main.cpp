@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
 
     Ptr<Stitcher> st = Stitcher::create(Stitcher::Mode::SCANS, false);
     st->setFeaturesFinder(makePtr<detail::SiftFeaturesFinder>());
+    st->setFeaturesMatcher(makePtr<detail::AffineBestOf2NearestMatcher>(true, false));
     st->setMatchingMask(matching_mask_);
 
 

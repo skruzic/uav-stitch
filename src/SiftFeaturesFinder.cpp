@@ -16,8 +16,8 @@ namespace cv {
     namespace detail {
         SiftFeaturesFinder::SiftFeaturesFinder() {
 #ifdef HAVE_OPENCV_XFEATURES2D
-            Ptr<SIFT> sdetector_ = SIFT::create();
-            Ptr<SIFT> sextractor_ = SIFT::create();
+            Ptr<SIFT> sdetector_ = SIFT::create(800, 3, 0.03, 10, 1.4142);
+            Ptr<SIFT> sextractor_ = SIFT::create(800, 3, 0.03, 10, 1.4142);
 
             if (!sdetector_ || !sextractor_)
                 CV_Error(Error::StsNotImplemented, "OpenCV was build without SIFT support");
