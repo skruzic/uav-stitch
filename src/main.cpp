@@ -1,6 +1,7 @@
 #include <iostream>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/stitching.hpp>
+#include <SiftFeaturesFinder.hpp>
 
 using namespace std;
 using namespace cv;
@@ -38,6 +39,7 @@ int main(int argc, char *argv[]) {
     UMat pano;
 
     Ptr<Stitcher> st = Stitcher::create(Stitcher::Mode::SCANS, false);
+    st->setFeaturesFinder(makePtr<detail::SiftFeaturesFinder>());
     st->setMatchingMask(matching_mask_);
 
 
