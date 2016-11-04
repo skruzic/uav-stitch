@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 
     Ptr<Stitcher> st = Stitcher::create(Stitcher::Mode::SCANS, false);
     st->setFeaturesFinder(makePtr<detail::SiftFeaturesFinder>());
-    st->setFeaturesMatcher(makePtr<detail::AffineBestOf2NearestMatcher>(false, false, 0.65f));
+    st->setFeaturesMatcher(makePtr<detail::AffineBestOf2NearestMatcher>(false, false, 0.65f)); // moze i 0.8
     //st->setFeaturesMatcher(makePtr<detail::AffineMatcher>());
     st->setMatchingMask(matching_mask_);
     //st->setBundleAdjuster(makePtr<detail::BundleAdjusterAffine>());
